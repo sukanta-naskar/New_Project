@@ -3,7 +3,7 @@ name: Build and Push Docker Image to ECR
 on:
   push:
     branches:
-      - main  # Change this if needed
+      - main  # Change if needed
 
 jobs:
   build-and-push:
@@ -23,19 +23,15 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
+      - name: Debug - Check ECR_REPOSITORY
+        run: echo "ECR_REPOSITORY is set to: ${{ secrets.ECR_REPOSITORY }}"
+
       - name: Build Docker Image
         run: |
-          docker build -t $ECR_REPOSITORY .  # Ensure context is passed (.)
-        env:
-          ECR_REPOSITORY: ${{ env.ECR_REPOSITORY }}
-
-      - name: Push Docker Image to ECR
+          echo "Building image with tag: ${{ secrets.ECR_REPOSITORY }}"
+          docker build -t ${{ secrets.ECR_REPOSITORY }} .
+      
+      - name: Tag and Push Docker Image to ECR
         run: |
-          docker push ${{ steps.login-ecr.outputs.registry }}/$ECR_REPOSITORY:latest
-
-      - name: Output Image URL
-        run: |
-          echo "Image pushed to: $REGISTRY/$ECR_REPOSITORY:latest"
-        env:
-          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: ${{ env.ECR_REPOSITORY }}
+          docker tag ${{ secrets.ECR_REPOSITORY }}:latest ${{ steps.login-ecr.outputs.registry }}/${{ secrets.ECR_REPOSITORY }}:latest
+          docker push ${{ steps.login-ecr.outputs.registry }}/${{ secrets.ECR_REPOSITORY }}:latest
