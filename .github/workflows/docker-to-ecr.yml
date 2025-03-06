@@ -23,7 +23,7 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-       - name: Build Docker Image
+      - name: Build Docker Image
         run: |
           docker build -t $ECR_REPOSITORY .  # Ensure context is passed (.)
         env:
