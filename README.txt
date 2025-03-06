@@ -19,3 +19,6 @@ git branch -M main
 git remote add origin https://github.com/sukanta-naskar/AWS_PROJECT.git
 git push -u origin main
 
+897722687643.dkr.ecr.us-east-1.amazonaws.com/my-lambda-repo-appointment
+897722687643.dkr.ecr.us-east-1.amazonaws.com/my-lambda-repo-patient
+

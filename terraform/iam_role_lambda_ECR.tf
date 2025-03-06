@@ -4,7 +4,7 @@ provider "aws" {
 
 # Create an ECR repository
 resource "aws_ecr_repository" "my_ecr_repo" {
-  name = "my-lambda-repo"
+  name = "my-lambda-repo-patient"
 }
 
 # Allow Lambda to pull images from ECR
