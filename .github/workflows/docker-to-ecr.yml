@@ -33,4 +33,7 @@ jobs:
           docker push ${{ steps.login-ecr.outputs.registry }}/$ECR_REPOSITORY:latest
 
       - name: Output Image URL
-        run: echo "Image pushed to: ${{ steps.login-ecr.outputs.registry }}/$ECR_REPOSITORY:latest"
+        run: echo "Image pushed to: $REGISTRY/$ECR_REPOSITORY"
+        env:
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: ${{ env.ECR_REPOSITORY }}
