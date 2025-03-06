@@ -1,0 +1,23 @@
+{
+  "name": "microservices-app",
+  "version": "1.0.0",
+  "description": "Microservices for patient and appointment management",
+  "scripts": {
+    "start:patient": "node patient-service.js",
+    "start:appointment": "node appointment-service.js",
+    "dev:patient": "nodemon patient-service.js",
+    "dev:appointment": "nodemon appointment-service.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "author": "Your Name",
+  "license": "MIT"
+}
+
